@@ -24,3 +24,9 @@ variable "vpc_pvt_subnet_cidr" {
     "c" = "10.0.16.0/21"
   }
 }
+
+variable "eks_security_group_name" {
+  description = "eks security group name"
+  type = string
+  default = "kubernetes_test_security_group"
+}
