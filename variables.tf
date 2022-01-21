@@ -30,3 +30,9 @@ variable "eks_security_group_name" {
   type = string
   default = "kubernetes_test_security_group"
 }
+
+variable "eks_lb_name" {
+  description = "eks load balancer name"
+  type = string
+  default = "kubernetes_test_load_balancer"
+}
