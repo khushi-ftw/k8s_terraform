@@ -13,13 +13,6 @@ resource "aws_security_group" "k8s_test_security_group" {
 
     ingress {
         protocol = "tcp"
-        from_port = 22
-        to_port = 22
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    ingress {
-        protocol = "tcp"
         from_port = 6443
         to_port = 6443
         cidr_blocks = ["0.0.0.0/0"]
