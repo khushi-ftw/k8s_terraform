@@ -8,3 +8,10 @@ resource "aws_vpc" "kubernetes_test_vpc" {
     # to tell EKS service that this is a Kubernetes shared resource, can be used across clusters and should not be removed
   }    
 }
+
+resource "aws_vpc_ipv4_cidr_block_association" "supplemental_network" {
+  for_each = toset(var.vpc_supplemental_network_cidr)
+
+  cidr_block = each.key
+  vpc_id = aws_vpc.kubernetes_test_vpc.id
+} 

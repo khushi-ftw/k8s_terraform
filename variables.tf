@@ -15,6 +15,11 @@ variable "vpc_network_cidr" {
   default = "10.0.0.0/16" 
 }
 
+variable "vpc_supplemental_network_cidr" {
+  description = "vpc netwprk cidr range"
+  default = ["10.100.0.0/16"]
+}
+
 variable "vpc_pvt_subnet_cidr" {
   description = "range of cidr for pvt subnet"
   type = map(string)
@@ -30,6 +35,15 @@ variable "vpc_pub_subnet_cidr" {
   default = {
     "a" = "10.0.16.0/21"
     "b" = "10.0.24.0/21"
+  }
+}
+
+variable "vpc_sec_pub_subnet_cidr" {
+  description = "range of cidr for pub subnet"
+  type = map(string)
+  default = {
+    "a" = "10.100.0.0/21"
+    "b" = "10.100.8.0/21"
   }
 }
 
