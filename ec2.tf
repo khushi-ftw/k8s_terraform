@@ -6,7 +6,7 @@ resource "aws_eks_node_group" "k8s_test_node_group" {
         for subnet in aws_subnet.private_subnets : subnet.id
     ]
     capacity_type = "ON_DEMAND"
-    instance_types = ["t3.micro"]
+    instance_types = ["t3.small"]
 
     scaling_config {
         desired_size = 1
