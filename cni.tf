@@ -15,3 +15,18 @@ resource "kubernetes_manifest" "pod_eni_cfg" {
         ]
     }
 }
+
+resource "kubectl_manifest" "cni_daemonset" {
+    yaml_body = templatefile(
+        "${path.module}/manifests/daemonset.yaml.tpl",
+        {
+            CUSTOM_NETWORK_CFG = var.cni_custom_network_cfg,
+            DOCKER_IMG = var.cni_docker_img,
+            ENI_CONFIG_LABEL = var.cni_eni_config_label,
+            INIT_DOCKER_IMG = var.cni_init_docker_img,
+        }
+    )
+    depends_on = [
+      kubernetes_manifest.pod_eni_cfg
+    ]
+}

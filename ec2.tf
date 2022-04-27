@@ -26,3 +26,32 @@ resource "aws_eks_node_group" "k8s_test_node_group" {
         aws_iam_role_policy_attachment.k8s_test_node_group-AmazonEC2ContainerRegistryReadOnly,
     ]
 }
+
+# resource "null_resource" "node_annotate" {
+#     depends_on = [
+#       kubernetes_manifest.pod_eni_cfg
+#     ]
+#     triggers = {
+#         always_run = timestamp()
+#     }
+#     provisioner "local-exec" {
+#         on_failure  = fail
+#         when = create
+#         interpreter = ["/bin/bash", "-c"]
+#         command     = <<EOT
+#             ./annotate_node.sh
+#         EOT
+#     }
+# }
+
+# resource "kubernetes_annotations" "node_annotate" {
+#     for_each = aws_eks_node_group.k8s_test_node_group.Node
+#     api_version = "v1"
+#     kind        = "Node"
+#     metadata {
+#         name = "my-config"
+#     }
+#     annotations = {
+#         "owner" = "myteam"
+#     }
+# }
