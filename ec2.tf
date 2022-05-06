@@ -44,14 +44,14 @@ resource "aws_eks_node_group" "k8s_test_node_group" {
 #     }
 # }
 
-resource "kubernetes_annotations" "node_annotate" {
-    for_each = aws_eks_node_group.k8s_test_node_group.Node
-    api_version = "v1"
-    kind        = "Node"
-    metadata {
-        name = "my-config"
-    }
-    annotations = {
-        "owner" = "myteam"
-    }
-}
+# resource "kubernetes_annotations" "node_annotate" {
+#     for_each = aws_eks_node_group.k8s_test_node_group.Node
+#     api_version = "v1"
+#     kind        = "Node"
+#     metadata {
+#         name = "my-config"
+#     }
+#     annotations = {
+#         "owner" = "myteam"
+#     }
+# }
